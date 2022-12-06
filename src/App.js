@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import BookList from "./components/BookList";
-import * as BooksAPI from "./components/BooksAPI";
-import { Routes, Route } from "react-router-dom";
-import Search from "./components/Search";
+import { useEffect, useState } from 'react';
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import BookList from './components/BookList';
+import * as BooksAPI from './components/BooksAPI';
+import Search from './components/Search';
 
 function App() {
   const [bookList, setBookList] = useState([]);
@@ -19,23 +19,19 @@ function App() {
     // updating the backend
     BooksAPI.update(book, newShelf);
     // updating the frontend
-    setBookList((prevBookList) => {
-      return prevBookList.map((ele) => {
-        if (ele.id === book.id) {
-          return { ...ele, shelf: newShelf };
-        }
-        return ele;
-      });
-    });
+    setBookList((prevBookList) => prevBookList.map((ele) => {
+      if (ele.id === book.id) {
+        return { ...ele, shelf: newShelf };
+      }
+      return ele;
+    }));
   };
   const addNewBook = (e, book) => {
     const newShelf = e.target.value;
     // updating the backend
     BooksAPI.update(book, newShelf);
     // updating the frontend
-    setBookList((prevBookList) => {
-      return [...prevBookList, { ...book, shelf: newShelf }];
-    });
+    setBookList((prevBookList) => [...prevBookList, { ...book, shelf: newShelf }]);
   };
   return (
     <div className="app">
@@ -45,17 +41,17 @@ function App() {
           element={
             <BookList bookList={bookList} selectNewShelf={selectNewShelf} />
           }
-        ></Route>
+        />
         <Route
           path="search"
-          element={
+          element={(
             <Search
               bookList={bookList}
               addNewBook={addNewBook}
               selectNewShelf={selectNewShelf}
             />
-          }
-        ></Route>
+          )}
+        />
       </Routes>
     </div>
   );

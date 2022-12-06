@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Book from './Book';
 
 function BookShelf({ title, bookList, selectNewShelf }) {
@@ -16,5 +17,12 @@ function BookShelf({ title, bookList, selectNewShelf }) {
     </div>
   );
 }
+
+BookShelf.propTypes = {
+  title: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  bookList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  selectNewShelf: PropTypes.func.isRequired,
+};
 
 export default BookShelf;

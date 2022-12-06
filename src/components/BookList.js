@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import BookShelf from './BookShelf';
 
 function BookList({ bookList, selectNewShelf }) {
@@ -44,5 +45,11 @@ function BookList({ bookList, selectNewShelf }) {
     </div>
   );
 }
+
+BookList.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  bookList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  selectNewShelf: PropTypes.func.isRequired,
+};
 
 export default BookList;
