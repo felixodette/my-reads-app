@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom";
-import BookShelf from "./BookShelf";
+import { Link } from 'react-router-dom';
+import BookShelf from './BookShelf';
 
-const BookList = ({ bookList, selectNewShelf }) => {
-  const currentlyReading = [],
-    wantToRead = [],
-    read = [];
+function BookList({ bookList, selectNewShelf }) {
+  const currentlyReading = [];
+  const wantToRead = [];
+  const read = [];
   bookList.forEach((ele) => {
-    if (ele.shelf === "currentlyReading") {
+    if (ele.shelf === 'currentlyReading') {
       currentlyReading.push(ele);
-    } else if (ele.shelf === "wantToRead") {
+    } else if (ele.shelf === 'wantToRead') {
       wantToRead.push(ele);
-    } else if (ele.shelf === "read") {
+    } else if (ele.shelf === 'read') {
       read.push(ele);
     }
   });
@@ -43,6 +43,6 @@ const BookList = ({ bookList, selectNewShelf }) => {
       </div>
     </div>
   );
-};
+}
 
 export default BookList;
