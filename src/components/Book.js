@@ -1,4 +1,6 @@
-const Book = ({ book, selectNewShelf }) => {
+import PropTypes from 'prop-types';
+
+function Book({ book, selectNewShelf }) {
   return (
     <div>
       <div className="book">
@@ -10,10 +12,10 @@ const Book = ({ book, selectNewShelf }) => {
               height: 193,
               backgroundImage: `url(${book.imageLinks?.thumbnail})`,
             }}
-          ></div>
+          />
           <div className="book-shelf-changer">
             <select
-              value={book.shelf || "none"}
+              value={book.shelf || 'none'}
               onChange={(e) => selectNewShelf(e, book)}
             >
               <option value="none" disabled>
@@ -27,10 +29,16 @@ const Book = ({ book, selectNewShelf }) => {
           </div>
         </div>
         <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.authors?.join(", ")}</div>
+        <div className="book-authors">{book.authors?.join(', ')}</div>
       </div>
     </div>
   );
+}
+
+Book.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  book: PropTypes.object.isRequired,
+  selectNewShelf: PropTypes.func.isRequired,
 };
 
 export default Book;
