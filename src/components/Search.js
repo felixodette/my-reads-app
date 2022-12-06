@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import Book from './Book';
 
@@ -16,7 +16,6 @@ function Search({ bookList, selectNewShelf, addNewBook }) {
     if (searchQuery !== '') {
       BooksAPI.search(searchQuery, 20).then((res) => {
         if (res.error) {
-          // eslint-disable-next-line no-console
           console.log(res.error, " didn't find anything");
           setSearchResults([]);
           return;
@@ -47,7 +46,7 @@ function Search({ bookList, selectNewShelf, addNewBook }) {
             searchResults.map((ele) => {
               let book = {};
               let isNewBook = true;
-              for (let i = 0; i < bookList.length; i + 1) {
+              for (let i = 0; i < bookList.length; i++) {
                 if (ele.id === bookList[i].id) {
                   book = { ...bookList[i] };
                   isNewBook = false;
@@ -75,7 +74,7 @@ function Search({ bookList, selectNewShelf, addNewBook }) {
 
 Search.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  bookList: PropTypes.array.isRequired,
+  bookList: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectNewShelf: PropTypes.func.isRequired,
   addNewBook: PropTypes.func.isRequired,
 };
