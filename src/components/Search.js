@@ -16,6 +16,7 @@ function Search({ bookList, selectNewShelf, addNewBook }) {
     if (searchQuery !== '') {
       BooksAPI.search(searchQuery, 20).then((res) => {
         if (res.error) {
+          // eslint-disable-next-line no-console
           console.log(res.error, " didn't find anything");
           setSearchResults([]);
           return;
@@ -46,6 +47,7 @@ function Search({ bookList, selectNewShelf, addNewBook }) {
             searchResults.map((ele) => {
               let book = {};
               let isNewBook = true;
+              // eslint-disable-next-line no-plusplus
               for (let i = 0; i < bookList.length; i++) {
                 if (ele.id === bookList[i].id) {
                   book = { ...bookList[i] };
